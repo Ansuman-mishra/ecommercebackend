@@ -29,14 +29,16 @@ export class DatabaseOptionsService {
   }
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
+    console.log('first', this.host,this.port,this.username,this.password,this.database)
     const options: TypeOrmModuleOptions = {
       type: 'postgres',
       host: this.host,
-      port: this.port,
+      port: Number(this.port),
       username: this.username,
       password: this.password,
       database: this.database,
       synchronize: this.synchronize,
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       logging:
         this.env !== ENUM_APP_ENVIRONMENT.PRODUCTION ? this.logging : false,
       autoLoadEntities: true,

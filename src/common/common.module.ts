@@ -6,6 +6,10 @@ import { DatabaseOptionsService } from './database/services/database.options.ser
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { GraphQLOptionsService } from './database/services/graphql.options.service';
+import { UserModule } from 'src/modules/user/user.module';
+import { ProductsModule } from 'src/modules/products/products.module';
+import { OrderProductsModule } from 'src/modules/order-products/order-products.module';
+import { OrdersModule } from 'src/modules/order/order.module';
 
 @Module({
   controllers: [],
@@ -18,7 +22,10 @@ import { GraphQLOptionsService } from './database/services/graphql.options.servi
       envFilePath: ['.env'],
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [ConfigModule,UserModule,
+        OrdersModule,
+        ProductsModule,
+        OrderProductsModule,],
       useClass: DatabaseOptionsService,
       inject: [DatabaseOptionsService],
     }),

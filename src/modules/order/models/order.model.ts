@@ -1,6 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ProductModel } from 'src/modules/products/models/products.model';
 
-import { ProductModel } from './product.model';
+
 import { UserModel } from 'src/modules/user/models/user.model';
 @ObjectType()
 export class OrderModel {

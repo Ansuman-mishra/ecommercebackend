@@ -7,14 +7,15 @@ import {
 } from 'typeorm';
 // import { Order } from '../../orders/entities/order.entity';
 import { IsEmail, IsNotEmpty, Length, IsString } from 'class-validator';
+import { Order } from 'src/modules/order/entities/order.entity';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  //   @OneToMany(() => Order, (order) => order.user)
-  //   orders: Order[];
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Order[];
 
   @Column({ unique: true })
   @IsNotEmpty({ message: 'Username is required' })
